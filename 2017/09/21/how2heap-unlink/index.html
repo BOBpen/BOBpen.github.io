@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        how2heap-unlink · BOBpenのStudio
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- 提前加载place holder  -->
+    <style>
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url('/font/Oswald-Regular.ttf');
+        }
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('/font/Source Sans Pro.woff'),
+            url('/font/Source Sans Pro.woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Source Code Pro';
+            src: url('/font/SourceCodePro-Regular.ttf.woff'),
+            url('/font/SourceCodePro-Regular.ttf.woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        
+        .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0px;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        99% {
+            transform: translate3d(0, 0, 0);
+        }
+        99.1% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(-226px, 0, 0);
+        }
+    }
+    </style>
+    <link rel="stylesheet" href = /css/style.css?v=20171005 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >BOBpenのStudio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">how2heap-unlink</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>BOBpenのStudio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            how2heap-unlink
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+        </p>
+        <!-- 404 -->
+        
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/09/21</span>
+            </div>
+        
+    </div>
+</div>
+        <div class="container">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>这是我的第一篇po文，大二成功转到了信息安全实验班，大一下接触的二进制，马马虎虎，希望从今天开始，能更加的脚踏实地，把每个环节都扎实下来，有所进步！</p>
+<h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>堆的unlink，其实最关键的就是两个指针互相写的过程，利用unlink这个双链表删除操作，达到目的。<br>1.最初的unlink，没有相关的检测机制，所以我们可以直接利用这个unlink宏来达成对got表的修改。<br>2，现在的unlink加入了一些保护机制，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">if (__builtin_expect (FD-&gt;bk != P || BK-&gt;fd != P, 0))                     </div><div class="line">      malloc_printerr (check_action, &quot;corrupted double-linked list&quot;, P);</div></pre></td></tr></table></figure></p>
+<p>对于二者，要检测是否相同因此就需要一个绕过，对于二者的不同，可以参照这篇文章<a href="http://wooyun.jozxing.cc/static/drops/tips-7326.html" target="_blank" rel="external">http://wooyun.jozxing.cc/static/drops/tips-7326.html</a></p>
+<h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>开始how2heap的例子，第一次我准备将我菜鸡般的gdb调试过程记录下，虽然程序编译后都给出了相应的结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;string.h&gt;</div><div class="line">#include &lt;stdint.h&gt;</div><div class="line"></div><div class="line"></div><div class="line">uint64_t *chunk0_ptr;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	printf(&quot;Welcome to unsafe unlink 2.0!\n&quot;);</div><div class="line">	printf(&quot;Tested in Ubuntu 14.04/16.04 64bit.\n&quot;);</div><div class="line">	printf(&quot;This technique can be used when you have a pointer at a known location to a region you can call unlink on.\n&quot;);</div><div class="line">	printf(&quot;The most common scenario is a vulnerable buffer that can be overflown and has a global pointer.\n&quot;);</div><div class="line"></div><div class="line">	int malloc_size = 0x80; //we want to be big enough not to use fastbins</div><div class="line">	int header_size = 2;</div><div class="line"></div><div class="line">	printf(&quot;The point of this exercise is to use free to corrupt the global chunk0_ptr to achieve arbitrary memory write.\n\n&quot;);</div><div class="line"></div><div class="line">	chunk0_ptr = (uint64_t*) malloc(malloc_size); //chunk0</div><div class="line">	uint64_t *chunk1_ptr  = (uint64_t*) malloc(malloc_size); //chunk1</div><div class="line">	printf(&quot;The global chunk0_ptr is at %p, pointing to %p\n&quot;, &amp;chunk0_ptr, chunk0_ptr);</div><div class="line">	printf(&quot;The victim chunk we are going to corrupt is at %p\n\n&quot;, chunk1_ptr);</div><div class="line"></div><div class="line">	printf(&quot;We create a fake chunk inside chunk0.\n&quot;);</div><div class="line">	--------</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>程序我简略了许多，（反正是自己的笔记）</p>
+<p>堆的unlink文章我看了一些，在还没有真正实战的情况下，我觉得首要就是先找出一个全局可修改指针或自己构造（目前先这么理解）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gdb-peda$ p chunk0_ptr</div><div class="line">$1 = (uint64_t *) 0x555555757420</div><div class="line">gdb-peda$ p &amp;chunk0_ptr</div><div class="line">$2 = (uint64_t **) 0x555555756050 &lt;chunk0_ptr&gt;</div></pre></td></tr></table></figure></p>
+<p>可以看到Chunk0的所在位置和内存内容<br>而我们的构造，就是要以Chunk0(下文用B来指代)，为基准。<br>所以，这就关系到chunk的结构!<br><a href="http://security.pingan.com/static/upload/2eb47c85f5a863a5c2904e529c0409a6.png" target="_blank" rel="external"></a><br>分别为（64位下）0x8的prev_size和其他都是0x8！<br>所以构造<br>fd= 0x555555756050-0x18<br>bk=  0x555555756050-0x10<br>这样p-&gt;fd-&gt;bk==p-&gt;bk-&gt;fd==B这样就绕开了第一个检查<br>（这里在调试的时候第一次把断点下在free函数，出现一些小问题，后来直接list源代码，下在free那一行，不懂什么问题，记录一下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">gdb-peda$ x/50gx 0x555555757420</div><div class="line">0x555555757420:	0x0000000000000000	0x0000000000000008</div><div class="line">0x555555757430:	0x0000555555756038	0x0000555555756040  #chunk0的fd，bk</div><div class="line">0x555555757440:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757450:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757460:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757470:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757480:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757490:	0x0000000000000000	0x0000000000000000</div><div class="line">0x5555557574a0:	0x0000000000000080	0x0000000000000090  #chunk1的头，注意最后三位是三个标志位，prev_inuse=0</div><div class="line">0x5555557574b0:	0x0000000000000000	0x0000000000000000  #chunk1的返回指针</div><div class="line">0x5555557574c0:	0x0000000000000000	0x0000000000000000</div><div class="line">0x5555557574d0:	0x0000000000000000	0x0000000000000000</div><div class="line">0x5555557574e0:	0x0000000000000000	0x0000000000000000</div><div class="line">0x5555557574f0:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757500:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757510:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757520:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757530:	0x0000000000000000	0x0000000000020ad1</div><div class="line">0x555555757540:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757550:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757560:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757570:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757580:	0x0000000000000000	0x0000000000000000</div><div class="line">0x555555757590:	0x0000000000000000	0x0000000000000000</div><div class="line">0x5555557575a0:	0x0000000000000000	0x0000000000000000</div></pre></td></tr></table></figure>
+<p>（在源码中，就是写成chunk0_ptr[2] = (uint64_t) &amp;chunk0_ptr-(sizeof(uint64_t)*3);）即64位的size<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gdb-peda$ p chunk1_ptr</div><div class="line">$3 = (uint64_t *) 0x5555557574b0</div></pre></td></tr></table></figure></p>
+<p>看一下本身构造的用来free的chunk1，刚好复习了概念，chunk的返回指针与头部的不相等关系，在glibc中，其实chunk就是个结构体的概念，而所有的变量都是通过的偏移形成的，这在很多计算机应用是基本的偏移寻址（联想到微机），所以就有了下面的理解。</p>
+<p>还需要关注另外两个验证，即以chunk1（fake chunk）为基准，考虑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chunksize(P) != prev_size (nextchunk(P)) == False</div></pre></td></tr></table></figure></p>
+<p>即chunk1的next_chunk的prev_size要和chunk1的size相等，这里关注next_chunk怎么寻址到的，就是通过chunk1的size来偏移的，chunk1的size是0，所以最终等式就是0=0.（还没验证，先留个bug）</p>
+<p>最后在free之后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gdb-peda$ p chunk0_ptr</div><div class="line">$3 = (uint64_t *) 0x555555756038</div></pre></td></tr></table></figure></p>
+<p>（断点设在free函数之后，不然程序运行到底，额···&lt;萌新的记录&gt;）</p>
+<p>所以只要向chunk0_ptr写，就可以把偏移3*0x8即第四个单位大小的任意地址写入任意东西</p>
+<h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>常用的利用方法思路，写入got表，再修改got或有list堆，即显示got地址，反正一堆balabala</p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2017/09/23/how2heap-serious-1/" title= 'how-heap-serious' >
+                    <span>Next Post</span>
+                    <span>'how-heap-serious'</span>
+                </a>
+            </li>
+        
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="emailto:294199511@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/BOBpen" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            CATALOG
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01"><span class="toc-number">1.</span> <span class="toc-text">0x01</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02"><span class="toc-number">2.</span> <span class="toc-text">0x02</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03"><span class="toc-number">3.</span> <span class="toc-text">0x03</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04"><span class="toc-number">4.</span> <span class="toc-text">0x04</span></a></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 4 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2017/10/18/写在其实不是最前的最前/" >[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2017/10/13/how2heap-serious-2/" >[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/2017/09/23/how2heap-serious-1/" >'how-heap-serious'</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/21</span><a class="archive-post-title" href= "/2017/09/21/how2heap-unlink/" >how2heap-unlink</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+
