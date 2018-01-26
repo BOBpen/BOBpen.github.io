@@ -103,13 +103,45 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/24/堆基础笔记/" >
+            <a class="content-show-full" href = "/2018/01/25/堆 ##/" >
                     <h2 class="abstract-title">
                         
-                        <span>[Untitled Post]</span>
+                        <span>堆漏洞总结</span>
                     </h2>
                 <div class="abstract-content">
-                    #linux虚拟内存
+                    堆这是个堆漏洞简单总结笔记
+0x01-unlink
+利用unlink达到任意写的目的
+关键步骤
+
+12p-&gt;fd=ptr-0x18p-&gt;bk=ptr-0x10
+触发unlink宏
+123451.FD=p-&gt;fd(实际是ptr-0x18)2.BK=p-&gt;bk(实际是ptr-0x10)3.检查是否满足上文所示的限制，由于FD-&gt;bk和BK-&gt;fd均为*ptr(即p)，由此可以过掉这个限制4.FD-&gt;bk=BK5.BK-&gt;fd=FD(p=ptr-0x18)
+unlink利用
+0x02-例子一个常见的可以create，delete，edit的程序
+...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/25</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/01/25/堆基础笔记/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>堆基础笔记</span>
+                    </h2>
+                <div class="abstract-content">
+                    linux虚拟内存
 
 与下图对应
 
@@ -124,7 +156,7 @@
 
 进程要知道哪些内存地址上的数据在物理内存上，哪些不在，还有在物理内存上的哪里，需要用页表来记录
 
-页表的每一个表项分两部分，第一部分记录此页是否在物理内存上，第二部分记录物理...
+页表的每一个表项分两部分，第一部分记录此页是否在物理内存上，第二部分记录物理内...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -132,7 +164,7 @@
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/24</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/25</span>
                 </div>
             </div>
         </article>
@@ -236,6 +268,14 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-archive"> Total : 5 </div>
     
     <div class="post-archive">
@@ -243,12 +283,17 @@
     
     
     
-    <div class="archive-year"> Invalid date </div>
+    <div class="archive-year"> 2018 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/01/24/堆基础笔记/" >[Untitled Post]</a>
+            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/堆 ##/" >堆漏洞总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/堆基础笔记/" >堆基础笔记</a>
         </li>
     
     
@@ -262,17 +307,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2017/10/18/写在其实不是最前的最前/" >[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2017/10/13/how2heap-serious-2/" >[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/2017/09/23/how2heap-serious-1/" >'how-heap-serious'</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2017/09/22/how2heap-serious-2/" >how2heap-unlink</a>
         </li>
     
     
