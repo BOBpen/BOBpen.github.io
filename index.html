@@ -123,6 +123,8 @@
                     </h2>
                 <div class="abstract-content">
                     堆这是个堆漏洞简单总结笔记
+unlink利用
+堆系列漏洞
 0x01-unlink
 利用unlink达到任意写的目的
 关键步骤
@@ -130,9 +132,7 @@
 12p-&gt;fd=ptr-0x18p-&gt;bk=ptr-0x10
 触发unlink宏
 123451.FD=p-&gt;fd(实际是ptr-0x18)2.BK=p-&gt;bk(实际是ptr-0x10)3.检查是否满足上文所示的限制，由于FD-&gt;bk和BK-&gt;fd均为*ptr(即p)，由此可以过掉这个限制4.FD-&gt;bk=BK5.BK-&gt;fd=FD(p=ptr-0x18)
-unlink利用
-0x02-例子一个常见的可以create，delete，edit的程序
-...
+0x02-例子一个常见的可以create，delete，ed...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -364,6 +364,8 @@ unlink利用
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
