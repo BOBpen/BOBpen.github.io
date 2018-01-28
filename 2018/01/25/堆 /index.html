@@ -154,7 +154,25 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gdb-peda$ x/10gx 0x6020e0</div><div class="line">0x6020e0:0x0000000001e8c060 0x0000000000000001</div><div class="line">0x6020f0:      free-got     0x0000000000000000</div><div class="line">0x602100:0x00000000006020e8 0x0000000000000001</div><div class="line">0x602110:0x0000000000000000 0x0000000000000000</div><div class="line">0x602120:0x0000000000000000 0x0000000000000000</div></pre></td></tr></table></figure>
 <p>可以看到0x602100指向了0x602100-0x18=0x6020e8处，所以edit第二块chunk，就会从0x6020e8开始写，从而可以覆盖已保存的指针，因为edit部分代码是根据这里保存的数据来修改的，所以<strong>就可以修改到覆盖过的free-got</strong>，从而达到改got的目的！</p>
 <p>参考:–<a href="https://bbs.pediy.com/thread-220799.htm" target="_blank" rel="external">链接</a></p>
-<p>##0x02  house-of-spirit  ##</p>
+<h2 id="0x02-house-of-spirit"><a href="#0x02-house-of-spirit" class="headerlink" title="0x02  house-of-spirit"></a>0x02  house-of-spirit</h2><p><strong>要点：</strong></p>
+<ul>
+<li>能通过栈溢出覆盖chunk指针</li>
+<li>free该chunk</li>
+<li>再malloc同样大小</li>
+<li>可编辑该chunk，写入数据</li>
+</ul>
+<p>一般情况下是有一个可输入的字符串数组，可构造shellcode，同时，栈上还保存着malloc的指针，还需要一些栈的可输入数据，来伪造size等字段，以达到伪造chunk的目的。</p>
+<p><img src="https://ohpjrz0l7.qnssl.com/wp-content/uploads/2017/03/stack.png" alt=""></p>
+<p><img src="https://ohpjrz0l7.qnssl.com/wp-content/uploads/2017/03/overflow.png" alt=""></p>
+<p>如图中。</p>
+<ol>
+<li>name字符串数组可以溢出到指针 ptr1</li>
+<li>篡改 ptr1 为0xbffffdf0，同时free</li>
+<li>程序中一般可控制再malloc，此时malloc相同大小的chunk，并利用 <strong>localage</strong> 伪造size，以通过chunk的检查，</li>
+<li>成功malloc到 0xbffffdf0 </li>
+<li>修改ret</li>
+<li>控制eip执行shellcode</li>
+</ol>
 
     </article>
     <!-- 前后页  -->
@@ -225,7 +243,7 @@
         <div class="toc-catalog">
             CATALOG
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-number">1.</span> <span class="toc-text">堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-unlink"><span class="toc-number">2.</span> <span class="toc-text">0x01-unlink</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-例子"><span class="toc-number">3.</span> <span class="toc-text">0x02-例子</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-number">1.</span> <span class="toc-text">堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-unlink"><span class="toc-number">2.</span> <span class="toc-text">0x01-unlink</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-例子"><span class="toc-number">3.</span> <span class="toc-text">0x02-例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-house-of-spirit"><span class="toc-number">4.</span> <span class="toc-text">0x02  house-of-spirit</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -239,10 +257,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
